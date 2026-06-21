@@ -23,7 +23,7 @@ Pushes to `main` run [.github/workflows/deploy.yml](.github/workflows/deploy.yml
 |-------|----------|
 | `/` | Home — educators |
 | `/product` | Feature overview |
-| `/pricing` | Plans (placeholder prices) |
+| `/pricing` | Free, Pro, Team, Enterprise plans |
 | `/docs` | Help center & FAQ |
 | `/legal` | Links to app terms/privacy |
 | `/authors` | Internal only (no nav links, noindex) |

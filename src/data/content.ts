@@ -35,7 +35,7 @@ export const HOW_IT_WORKS = [
   {
     step: '3',
     title: 'Export & share',
-    description: 'Download MP4, PowerPoint, or a ViewDeck file — or save to the cloud on Pro plans.',
+    description: 'Download MP4, PowerPoint, or a `.viewdeck` file — or save to the cloud on Pro and Team plans.',
   },
 ];
 
@@ -74,7 +74,7 @@ export const GUIDES = [
     steps: [
       'Use Export MP4 in the toolbar when your deck is ready.',
       'Export runs in your browser (Chrome or Edge recommended). Maximum length is 60 seconds at 1080p.',
-      'Free plan exports include a small watermark; Pro and above export without watermark.',
+      'Free plan exports include a non-intrusive "Created By STEMSketch" watermark; Pro and above export without watermark.',
     ],
   },
   {
@@ -88,10 +88,10 @@ export const GUIDES = [
   },
   {
     id: 'cloud',
-    title: 'Saving to the cloud (Pro+)',
+    title: 'Saving to the cloud (Pro & Team)',
     steps: [
       'Sign in and choose Save with a project name.',
-      'Pro plans sync ViewDecks to the cloud so you can resume on another device.',
+      'Pro plans include 2 GB of cloud storage; Team plans include 5 GB.',
       'Publish when ready to share a view-only link with students or colleagues.',
     ],
   },
@@ -100,7 +100,7 @@ export const GUIDES = [
     title: 'Sharing a ViewDeck',
     steps: [
       'Export a `.viewdeck` file for offline backup or import on another account.',
-      'Use cloud publish (Pro+) to generate a share link for view-only playback.',
+      'Use cloud publish (Pro or Team) to generate a share link for view-only playback.',
       'Recipients do not need to edit — they watch the composed lesson.',
     ],
   },
@@ -113,7 +113,7 @@ export const FAQ = [
   },
   {
     q: 'Can I use STEMSketch for free?',
-    a: 'Yes. The Free plan includes official pack templates, local projects, and exports with a watermark. See Pricing for cloud storage and watermark-free export.',
+    a: 'Yes. The Free plan includes official pack templates, local `.viewdeck` saves, and exports with a "Created By STEMSketch" watermark. See Pricing for cloud storage and watermark-free export.',
   },
   {
     q: 'Do I need to know programming?',
@@ -133,11 +133,11 @@ export const FAQ = [
   },
   {
     q: 'Can I collaborate with colleagues?',
-    a: 'Team plans include realtime collaboration on cloud ViewDecks. Pro plans support cloud drafts and scoped sharing.',
+    a: 'Team plans include realtime collaboration on cloud ViewDecks. Pro plans include 2 GB cloud storage without collaboration.',
   },
   {
     q: 'How do I remove the watermark?',
-    a: 'Upgrade to Pro or higher. Free plan MP4 exports include a STEMSketch watermark.',
+    a: 'Upgrade to Pro or Team. Free plan MP4 exports include a non-intrusive "Created By STEMSketch" watermark.',
   },
   {
     q: 'Can I import PowerPoint back into STEMSketch?',
@@ -150,7 +150,15 @@ export const FAQ = [
 ];
 
 /** Pricing plan data — mirrors platform PLAN_QUOTAS */
-export type PlanId = 'free' | 'pro' | 'team' | 'api';
+export type PlanId = 'free' | 'pro' | 'team' | 'enterprise';
+
+export interface PlanComparison {
+  serverStorage: string;
+  localViewdeck: boolean;
+  watermark: string;
+  realtimeCollab: boolean;
+  ssoScim: boolean;
+}
 
 export interface Plan {
   id: PlanId;
@@ -158,20 +166,11 @@ export interface Plan {
   price: string;
   priceNote?: string;
   description: string;
+  features: string[];
   cta: string;
   ctaHref: string;
   highlighted?: boolean;
-  quotas: {
-    maxProjects: number;
-    renderMinutesPerMonth: number;
-    llmCallsPerMonth: number;
-    watermark: boolean;
-    cloudViewDecks: boolean;
-    maxViewDecks: number;
-    cloudDrafts: boolean;
-    realtimeCollab: boolean;
-    scopedGrants: boolean;
-  };
+  comparison: PlanComparison;
 }
 
 export const PLANS: Plan[] = [
@@ -180,96 +179,96 @@ export const PLANS: Plan[] = [
     name: 'Free',
     price: '$0',
     priceNote: 'forever',
-    description: 'Explore official packs and build lessons locally.',
+    description: 'Build lessons locally with official STEM templates.',
+    features: [
+      'Local `.viewdeck` saves',
+      'No server-side storage',
+      '"Created By STEMSketch" on rendered videos',
+    ],
     cta: 'Start free',
     ctaHref: 'https://anime.os20.org/signup',
-    quotas: {
-      maxProjects: 5,
-      renderMinutesPerMonth: 10,
-      llmCallsPerMonth: 20,
-      watermark: true,
-      cloudViewDecks: false,
-      maxViewDecks: 0,
-      cloudDrafts: false,
+    comparison: {
+      serverStorage: '—',
+      localViewdeck: true,
+      watermark: 'Created By STEMSketch',
       realtimeCollab: false,
-      scopedGrants: false,
+      ssoScim: false,
     },
   },
   {
     id: 'pro',
     name: 'Pro',
-    price: '$19',
-    priceNote: '/ month · placeholder',
-    description: 'Cloud saves, watermark-free exports, and higher limits.',
+    price: '$5',
+    priceNote: 'per year',
+    description: 'Cloud storage and watermark-free exports for individual educators.',
+    features: [
+      '2 GB server-side storage',
+      'Watermark-free MP4 export',
+      'Cloud sync across devices',
+    ],
     cta: 'Upgrade to Pro',
-    ctaHref: '#',
-    highlighted: true,
-    quotas: {
-      maxProjects: 50,
-      renderMinutesPerMonth: 120,
-      llmCallsPerMonth: 500,
-      watermark: false,
-      cloudViewDecks: true,
-      maxViewDecks: 100,
-      cloudDrafts: true,
+    ctaHref: 'https://anime.os20.org/signup',
+    comparison: {
+      serverStorage: '2 GB',
+      localViewdeck: true,
+      watermark: '—',
       realtimeCollab: false,
-      scopedGrants: true,
+      ssoScim: false,
     },
   },
   {
     id: 'team',
     name: 'Team',
-    price: '$49',
-    priceNote: '/ month · placeholder',
-    description: 'Realtime collaboration for departments and lab groups.',
-    cta: 'Contact us',
-    ctaHref: 'mailto:hello@stemsketch.dev',
-    quotas: {
-      maxProjects: 200,
-      renderMinutesPerMonth: 600,
-      llmCallsPerMonth: 2000,
-      watermark: false,
-      cloudViewDecks: true,
-      maxViewDecks: 500,
-      cloudDrafts: true,
+    price: '$5',
+    priceNote: 'per month · or $50 per year',
+    description: 'Collaborate in realtime with more cloud storage for your group.',
+    features: [
+      '5 GB server-side storage',
+      'Realtime collaboration',
+      'Watermark-free MP4 export',
+    ],
+    cta: 'Upgrade to Team',
+    ctaHref: 'https://anime.os20.org/signup',
+    highlighted: true,
+    comparison: {
+      serverStorage: '5 GB',
+      localViewdeck: true,
+      watermark: '—',
       realtimeCollab: true,
-      scopedGrants: true,
+      ssoScim: false,
     },
   },
   {
-    id: 'api',
-    name: 'API',
+    id: 'enterprise',
+    name: 'Enterprise',
     price: 'Custom',
-    priceNote: 'contact sales',
-    description: 'Highest quotas and programmatic access for integrators.',
-    cta: 'Contact sales',
+    priceNote: 'contact us',
+    description: 'SSO, SCIM, and custom terms for institutions.',
+    features: [
+      'Single sign-on (SSO)',
+      'SCIM provisioning',
+      'Custom storage & support',
+    ],
+    cta: 'Contact us',
     ctaHref: 'mailto:hello@stemsketch.dev',
-    quotas: {
-      maxProjects: 500,
-      renderMinutesPerMonth: 1000,
-      llmCallsPerMonth: 5000,
-      watermark: false,
-      cloudViewDecks: true,
-      maxViewDecks: 2000,
-      cloudDrafts: true,
+    comparison: {
+      serverStorage: 'Custom',
+      localViewdeck: true,
+      watermark: '—',
       realtimeCollab: true,
-      scopedGrants: true,
+      ssoScim: true,
     },
   },
 ];
 
 export const COMPARISON_ROWS: {
   label: string;
-  key: keyof Plan['quotas'];
-  format?: (v: boolean | number) => string;
+  key: keyof PlanComparison;
+  format?: (v: boolean | string) => string;
 }[] = [
-  { label: 'Saved projects', key: 'maxProjects' },
-  { label: 'Export minutes / month', key: 'renderMinutesPerMonth' },
-  { label: 'AI assist calls / month', key: 'llmCallsPerMonth' },
-  { label: 'Watermark on exports', key: 'watermark', format: (v) => (v ? 'Yes' : 'No') },
-  { label: 'Cloud ViewDecks', key: 'cloudViewDecks', format: (v) => (v ? 'Yes' : '—') },
-  { label: 'Max cloud ViewDecks', key: 'maxViewDecks', format: (v) => (v === 0 ? '—' : String(v)) },
-  { label: 'Cloud drafts', key: 'cloudDrafts', format: (v) => (v ? 'Yes' : '—') },
+  { label: 'Server-side storage', key: 'serverStorage' },
+  { label: 'Local `.viewdeck` saves', key: 'localViewdeck', format: (v) => (v ? 'Yes' : '—') },
+  { label: 'Video watermark', key: 'watermark' },
   { label: 'Realtime collaboration', key: 'realtimeCollab', format: (v) => (v ? 'Yes' : '—') },
-  { label: 'Scoped sharing', key: 'scopedGrants', format: (v) => (v ? 'Yes' : '—') },
+  { label: 'SSO / SCIM', key: 'ssoScim', format: (v) => (v ? 'Yes' : '—') },
 ];

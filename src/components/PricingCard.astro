@@ -15,6 +15,11 @@ const { plan } = Astro.props;
   {plan.priceNote && <p class="pricing-card__note">{plan.priceNote}</p>}
   <h4>{plan.name}</h4>
   <p class="pricing-card__desc">{plan.description}</p>
+  <ul class="pricing-card__features">
+    {plan.features.map((feature) => (
+      <li>{feature}</li>
+    ))}
+  </ul>
   <Button href={plan.ctaHref} variant={plan.highlighted ? 'primary' : 'secondary'} class="pricing-card__cta">
     {plan.cta}
   </Button>
@@ -24,5 +29,26 @@ const { plan } = Astro.props;
   .pricing-card h4 {
     margin: 0 0 0.5rem;
     font-size: 1.1rem;
+  }
+
+  .pricing-card__features {
+    margin: 0 0 1.25rem;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+    color: var(--ss-text-secondary);
+  }
+
+  .pricing-card__features li {
+    padding: 0.35rem 0 0.35rem 1.25rem;
+    position: relative;
+  }
+
+  .pricing-card__features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--ss-accent);
+    font-weight: 600;
   }
 </style>
