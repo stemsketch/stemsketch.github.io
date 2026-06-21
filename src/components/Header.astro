@@ -1,0 +1,134 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import { NAV, LINKS, SITE } from '../config/site.ts';
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand">
+      <Logo size={28} />
+      <span>{SITE.name}</span>
+    </a>
+
+    <button type="button" class="site-header__toggle" aria-expanded="false" aria-controls="site-nav" id="nav-toggle">
+      <span class="sr-only">Menu</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <nav class="site-header__nav" id="site-nav">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class="site-header__link">
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={LINKS.login} class="site-header__link site-header__link--muted">Log in</a>
+      <Button href={LINKS.signup} variant="primary">Sign up</Button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ss-border);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--ss-text-primary);
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-decoration: none;
+  }
+
+  .site-header__brand:hover {
+    color: var(--ss-accent);
+  }
+
+  .site-header__toggle {
+    display: inline-flex;
+    padding: 0.35rem;
+    background: transparent;
+    border: 1px solid var(--ss-border);
+    border-radius: 8px;
+    color: var(--ss-text-primary);
+    cursor: pointer;
+  }
+
+  .site-header__nav {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-header__link {
+    color: var(--ss-text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .site-header__link:hover,
+  .site-header__link--muted:hover {
+    color: var(--ss-accent);
+  }
+
+  .site-header__link--muted {
+    color: var(--ss-text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .site-header__toggle {
+      display: none;
+    }
+
+    .site-header__nav {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .site-header__nav.is-open {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: var(--ss-bg-panel);
+      border-bottom: 1px solid var(--ss-border);
+      box-shadow: var(--ss-shadow-md);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open') ?? false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

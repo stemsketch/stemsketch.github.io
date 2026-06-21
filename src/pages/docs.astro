@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { LINKS } from '../config/site.ts';
+
+const docs = [
+  {
+    title: 'Architecture (Architecture F)',
+    href: LINKS.architecture,
+    description: 'Canonical platform architecture — layers, compile paths, personas, and repo layout.',
+  },
+  {
+    title: 'Author / end-user boundary',
+    href: LINKS.authorBoundary,
+    description: 'Persona split, ScenarioSpec contract, and tooling map.',
+  },
+  {
+    title: 'Contributing',
+    href: LINKS.contributing,
+    description: 'Shell repo model, pack validation, and signed bundle workflow.',
+  },
+  {
+    title: 'VS Code extension README',
+    href: LINKS.extension,
+    description: 'Extension features, enterprise vs platform edition, and settings.',
+  },
+  {
+    title: 'Platform monorepo (app)',
+    href: LINKS.appRepo,
+    description: 'Editor, render-server, knowledge packs, and packages.',
+  },
+  {
+    title: 'author-studio',
+    href: LINKS.authorStudio,
+    description: 'Preconfigured author workspace template.',
+  },
+  {
+    title: 'author-services',
+    href: LINKS.authorServices,
+    description: 'Author HTTP API for enterprise edition.',
+  },
+];
+---
+
+<BaseLayout title="Docs" description="Documentation hub for STEMSketch — architecture, authoring, and platform repos.">
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">Documentation</h1>
+      <p class="hero__lead">Curated links to architecture and authoring docs in the STEMSketch GitHub organization.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="doc-list">
+        {
+          docs.map((doc) => (
+            <li>
+              <a href={doc.href} rel="noopener noreferrer">{doc.title}</a>
+              <span>{doc.description}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

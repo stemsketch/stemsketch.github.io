@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingCard from '../components/PricingCard.astro';
+import PlanTable from '../components/PlanTable.astro';
+import { PLANS } from '../data/plans.ts';
+---
+
+<BaseLayout
+  title="Pricing"
+  description="STEMSketch plans — Free, Pro, Team, and API. Placeholder pricing aligned with platform quotas."
+>
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">Simple plans for educators and teams</h1>
+      <p class="hero__lead">
+        Start free with watermarked exports. Upgrade for cloud ViewDecks, higher limits, and realtime collaboration.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-4">
+        {PLANS.map((plan) => <PricingCard plan={plan} />)}
+      </div>
+      <PlanTable />
+      <p class="footnote">
+        Pricing subject to change. Dollar amounts are placeholders — billing is not yet enabled. Feature limits mirror the platform quota configuration in the STEMSketch app.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

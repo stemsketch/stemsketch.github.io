@@ -1,0 +1,35 @@
+---
+import type { Plan } from '../data/plans.ts';
+import { PLANS, COMPARISON_ROWS } from '../data/plans.ts';
+---
+
+<div class="plan-table-wrap">
+  <table class="plan-table">
+    <thead>
+      <tr>
+        <th scope="col">Feature</th>
+        {
+          PLANS.map((plan) => (
+            <th scope="col">{plan.name}</th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody>
+      {
+        COMPARISON_ROWS.map((row) => (
+          <tr>
+            <th scope="row">{row.label}</th>
+            {
+              PLANS.map((plan) => {
+                const raw = plan.quotas[row.key];
+                const value = row.format ? row.format(raw as boolean | number) : String(raw);
+                return <td>{value}</td>;
+              })
+            }
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

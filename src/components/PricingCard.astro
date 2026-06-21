@@ -1,0 +1,28 @@
+---
+import type { Plan } from '../data/plans.ts';
+import Button from './Button.astro';
+
+interface Props {
+  plan: Plan;
+}
+
+const { plan } = Astro.props;
+---
+
+<article class={`card pricing-card ${plan.highlighted ? 'pricing-card--highlight' : ''}`}>
+  {plan.highlighted && <span class="pricing-card__badge">Popular</span>}
+  <h3 class="pricing-card__price">{plan.price}</h3>
+  {plan.priceNote && <p class="pricing-card__note">{plan.priceNote}</p>}
+  <h4>{plan.name}</h4>
+  <p class="pricing-card__desc">{plan.description}</p>
+  <Button href={plan.ctaHref} variant={plan.highlighted ? 'primary' : 'secondary'} class="pricing-card__cta">
+    {plan.cta}
+  </Button>
+</article>
+
+<style>
+  .pricing-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+</style>

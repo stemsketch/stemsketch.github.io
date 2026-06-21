@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { FEATURES, HOW_IT_WORKS, TAXONOMY_AREAS } from '../data/plans.ts';
+import { LINKS, SITE } from '../config/site.ts';
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">Semantic STEM animations for educators and authors</h1>
+      <p class="hero__lead">{SITE.tagline}</p>
+      <div class="hero__actions">
+        <Button href={LINKS.editor}>Open editor</Button>
+        <Button href="/pricing" variant="secondary">View pricing</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="section__title">Two paths, one platform</h2>
+      <p class="section__lead">STEMSketch separates content authoring from classroom composition — experts publish packs; teachers build ViewDecks.</p>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Teach &amp; present</h3>
+          <p>
+            Drag official catalog templates onto slides, tune parameters with forms, preview animations, and export MP4 or PowerPoint — no code required.
+          </p>
+          <p style="margin-top: 1rem">
+            <Button href={LINKS.editor}>Open editor</Button>
+          </p>
+        </article>
+        <article class="card">
+          <h3>Author content</h3>
+          <p>
+            Domain experts publish Architecture F knowledge packs with ontology, ops, figures, views, and ScenarioSpec templates via VS Code and author-services.
+          </p>
+          <p style="margin-top: 1rem">
+            <Button href="/authors" variant="secondary">Author toolchain</Button>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">Built for STEM classrooms</h2>
+      <div class="grid-4">
+        {
+          FEATURES.map((f) => (
+            <article class="card">
+              <h3>{f.title}</h3>
+              <p>{f.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="section__title">How it works</h2>
+      <div class="grid-3">
+        {
+          HOW_IT_WORKS.map((step) => (
+            <article class="card">
+              <span class="step-num">{step.step}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">STEM domain coverage</h2>
+      <p class="section__lead">Official packs span taxonomy areas from natural sciences to applied fields — with more domains added over time.</p>
+      <div class="grid-3">
+        {
+          TAXONOMY_AREAS.map((area) => (
+            <article class="card">
+              <h3>{area.label}</h3>
+              <p>{area.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container" style="text-align: center">
+      <h2 class="section__title">Ready to compose your first ViewDeck?</h2>
+      <p class="section__lead" style="margin-inline: auto">Start free with official packs, or explore plans for cloud storage and collaboration.</p>
+      <div class="hero__actions">
+        <Button href={LINKS.signup}>Sign up free</Button>
+        <Button href="/pricing" variant="ghost">Compare plans</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
