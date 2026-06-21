@@ -2,30 +2,31 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PricingCard from '../components/PricingCard.astro';
 import PlanTable from '../components/PlanTable.astro';
-import { PLANS } from '../data/plans.ts';
+import { PLANS } from '../data/content.ts';
 ---
 
 <BaseLayout
   title="Pricing"
-  description="STEMSketch plans — Free, Pro, Team, and API. Placeholder pricing aligned with platform quotas."
+  description="STEMSketch plans for educators — Free, Pro, Team, and API. Compare features and limits."
 >
-  <section class="hero">
+  <section class="hero hero--center">
     <div class="container">
-      <h1 class="hero__title">Simple plans for educators and teams</h1>
+      <p class="eyebrow">Pricing</p>
+      <h1 class="hero__title">Plans for every classroom</h1>
       <p class="hero__lead">
-        Start free with watermarked exports. Upgrade for cloud ViewDecks, higher limits, and realtime collaboration.
+        Start free with official packs and local projects. Upgrade when you need cloud saves, watermark-free export, or team collaboration.
       </p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top: 0">
     <div class="container">
       <div class="grid-4">
         {PLANS.map((plan) => <PricingCard plan={plan} />)}
       </div>
       <PlanTable />
       <p class="footnote">
-        Pricing subject to change. Dollar amounts are placeholders — billing is not yet enabled. Feature limits mirror the platform quota configuration in the STEMSketch app.
+        Pricing subject to change. Dollar amounts are placeholders — billing is not yet enabled. Limits reflect the STEMSketch platform configuration.
       </p>
     </div>
   </section>

@@ -5,35 +5,37 @@ import { LINKS } from '../config/site.ts';
 ---
 
 <BaseLayout
-  title="Product"
-  description="STEMSketch editor — catalog templates, ViewDecks, slide transitions, timeline, and client-side export."
+  title="Features"
+  description="STEMSketch editor features — catalog templates, slides, timeline, cloud saves, and export to MP4 or PowerPoint."
 >
-  <section class="hero">
+  <section class="hero hero--center">
     <div class="container">
-      <h1 class="hero__title">Compose lessons, export with confidence</h1>
+      <p class="eyebrow">Features</p>
+      <h1 class="hero__title">Your studio for animated STEM lessons</h1>
       <p class="hero__lead">
-        The STEMSketch browser editor turns official pack templates into multi-slide ViewDecks with animated previews and export to MP4, PowerPoint, or signed ViewDeck files.
+        A browser-based editor with an official template catalog, multi-slide composition, and export tools built for educators — not developers.
       </p>
       <div class="hero__actions">
-        <Button href={LINKS.editor}>Try the editor</Button>
+        <Button href={LINKS.editor} class="btn--lg">Try the editor</Button>
       </div>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <h2 class="section__title">Catalog &amp; ScenarioSpec</h2>
-      <p class="section__lead">
-        Browse official STEM packs grouped by taxonomy area. Each template carries a declarative scenario — initial entities, optional op steps, and presentation timing. End-users edit parameters through property forms, not code.
-      </p>
+      <p class="eyebrow">Templates</p>
+      <h2 class="section__title">Drag, tune, preview</h2>
+      <p class="section__lead">Every template ships with sensible defaults. Adjust values in the properties panel and watch the animation update live.</p>
       <div class="grid-2">
         <article class="card">
-          <h3>Drag-and-drop templates</h3>
-          <p>Add pack templates from the artifact library onto any slide. Pin pack version and view for reproducible lessons.</p>
+          <div class="card__icon">📚</div>
+          <h3>Official catalog</h3>
+          <p>Browse STEM packs grouped by subject — biology, physics, chemistry, engineering, and more.</p>
         </article>
         <article class="card">
-          <h3>Parameter panels</h3>
-          <p>Length, angle, duration, and domain-specific fields appear as labeled inputs with min/max hints from authors.</p>
+          <div class="card__icon">🎛️</div>
+          <h3>Parameter controls</h3>
+          <p>Length, angle, speed, and domain-specific fields appear as labeled inputs with helpful min/max hints.</p>
         </article>
       </div>
     </div>
@@ -41,19 +43,23 @@ import { LINKS } from '../config/site.ts';
 
   <section class="section">
     <div class="container">
-      <h2 class="section__title">Slides &amp; timeline</h2>
+      <p class="eyebrow">Composition</p>
+      <h2 class="section__title">Slides, layers & timeline</h2>
       <div class="grid-3">
         <article class="card">
+          <div class="card__icon">🎞️</div>
           <h3>Slide filmstrip</h3>
-          <p>Reorder, duplicate, and transition between slides with cut, fade, or morph — including linked-artifact morph for consistent motion across slides.</p>
+          <p>Add, duplicate, and reorder slides. Set cut, fade, or morph transitions between them.</p>
         </article>
         <article class="card">
-          <h3>Artifact timeline</h3>
-          <p>Scrub playback, seek to slide boundaries, and select layers from a shared timeline across the deck.</p>
+          <div class="card__icon">⏱️</div>
+          <h3>Shared timeline</h3>
+          <p>Scrub playback, jump to slide boundaries, and select layers from one timeline across the deck.</p>
         </article>
         <article class="card">
+          <div class="card__icon">📑</div>
           <h3>Layers panel</h3>
-          <p>Focus, hide, reorder, copy to other slides, and link artifacts across a multi-slide project.</p>
+          <p>Focus, hide, reorder, and copy artifacts between slides in multi-layer lessons.</p>
         </article>
       </div>
     </div>
@@ -61,31 +67,34 @@ import { LINKS } from '../config/site.ts';
 
   <section class="section section--alt">
     <div class="container">
-      <h2 class="section__title">Cloud ViewDecks (Pro+)</h2>
-      <p class="section__lead">
-        Save drafts and published ViewDecks to the cloud with plan-based storage limits. Free tier keeps projects local; Pro and above enable cloud sync and scoped sharing grants.
-      </p>
+      <p class="eyebrow">Cloud (Pro+)</p>
+      <h2 class="section__title">Save & sync ViewDecks</h2>
+      <p class="section__lead">Free accounts keep projects on your device. Pro and Team plans add cloud storage, drafts, and sharing — so you can pick up on any computer.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2 class="section__title">Export</h2>
+      <p class="eyebrow">Export</p>
+      <h2 class="section__title">Take it to the classroom</h2>
       <div class="grid-3">
         <article class="card">
+          <div class="card__icon">🎥</div>
           <h3>MP4 video</h3>
-          <p>Client-side export via WebCodecs in Chrome or Edge. Up to 60 seconds at 1080p — no server render queue.</p>
+          <p>Render in Chrome or Edge — up to 60 seconds at 1080p, directly in your browser.</p>
         </article>
         <article class="card">
+          <div class="card__icon">📊</div>
           <h3>PowerPoint</h3>
-          <p>Hybrid fidelity: static shapes, native transitions, or embedded video per slide depending on motion complexity.</p>
+          <p>Hybrid export: static shapes, native transitions, or embedded video per slide.</p>
         </article>
         <article class="card">
-          <h3>ViewDeck (.viewdeck)</h3>
-          <p>Signed portable project files for view-only sharing and round-trip editing with platform verification.</p>
+          <div class="card__icon">📦</div>
+          <h3>ViewDeck file</h3>
+          <p>Portable project files for backup, import, or view-only sharing.</p>
         </article>
       </div>
-      <p class="footnote">Free plan exports include a watermark. See <a href="/pricing">pricing</a> for plan details.</p>
+      <p class="footnote">Free plan exports include a watermark. <a href="/pricing">Compare plans</a></p>
     </div>
   </section>
 </BaseLayout>

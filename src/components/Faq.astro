@@ -1,0 +1,81 @@
+---
+import { FAQ } from '../data/content.ts';
+---
+
+<section class="section faq-section" id="faq">
+  <div class="container container--narrow">
+    <p class="eyebrow">FAQ</p>
+    <h2 class="section__title">Common questions</h2>
+    <div class="faq-list">
+      {
+        FAQ.map((item, i) => (
+          <details class="faq-item" open={i === 0}>
+            <summary class="faq-item__q">{item.q}</summary>
+            <p class="faq-item__a">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding-top: 2rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .faq-item {
+    background: var(--ss-bg-panel);
+    border: 1px solid var(--ss-border);
+    border-radius: var(--ss-radius-lg);
+    padding: 0 1.25rem;
+    box-shadow: var(--ss-shadow-sm);
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .faq-item[open] {
+    border-color: var(--ss-accent-soft);
+    box-shadow: var(--ss-shadow-md);
+  }
+
+  .faq-item__q {
+    padding: 1.1rem 0;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-item__q::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item__q::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--ss-accent);
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-item__q::after {
+    content: '−';
+  }
+
+  .faq-item__a {
+    margin: 0 0 1.25rem;
+    color: var(--ss-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+</style>

@@ -4,11 +4,12 @@ import Button from '../components/Button.astro';
 import { APP_ORIGIN, LINKS } from '../config/site.ts';
 ---
 
-<BaseLayout title="Legal" description="STEMSketch legal information and links to terms and privacy on the production app.">
-  <section class="hero">
+<BaseLayout title="Legal" description="STEMSketch legal information and links to terms and privacy.">
+  <section class="hero hero--center">
     <div class="container">
-      <h1 class="hero__title">Legal</h1>
-      <p class="hero__lead">Terms of service and privacy policy are hosted on the STEMSketch application.</p>
+      <p class="eyebrow">Legal</p>
+      <h1 class="hero__title">Terms & privacy</h1>
+      <p class="hero__lead">Legal documents for the STEMSketch application are hosted on our production app.</p>
     </div>
   </section>
 
@@ -16,23 +17,24 @@ import { APP_ORIGIN, LINKS } from '../config/site.ts';
     <div class="container">
       <div class="grid-2">
         <article class="card">
+          <div class="card__icon">📄</div>
           <h3>Terms of service</h3>
           <p>Usage terms for the STEMSketch editor and platform services.</p>
-          <p style="margin-top: 1rem">
+          <p style="margin-top: 1.25rem">
             <Button href={LINKS.terms} external>View terms</Button>
           </p>
         </article>
         <article class="card">
+          <div class="card__icon">🔒</div>
           <h3>Privacy policy</h3>
           <p>How we handle account data, projects, and cloud ViewDeck storage.</p>
-          <p style="margin-top: 1rem">
+          <p style="margin-top: 1.25rem">
             <Button href={LINKS.privacy} variant="secondary" external>View privacy policy</Button>
           </p>
         </article>
       </div>
       <p class="footnote">
-        This marketing site (stemsketch.github.io) is static documentation only. The interactive application runs at{' '}
-        <a href={APP_ORIGIN}>anime.os20.org</a>.
+        The interactive application runs at <a href={APP_ORIGIN}>anime.os20.org</a>. This page is part of the STEMSketch marketing site.
       </p>
     </div>
   </section>

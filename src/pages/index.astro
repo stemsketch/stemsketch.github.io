@@ -1,56 +1,53 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
-import { FEATURES, HOW_IT_WORKS, TAXONOMY_AREAS } from '../data/plans.ts';
+import HeroVisual from '../components/HeroVisual.astro';
+import { FEATURES, HOW_IT_WORKS, SUBJECT_AREAS } from '../data/content.ts';
 import { LINKS, SITE } from '../config/site.ts';
 ---
 
 <BaseLayout>
-  <section class="hero">
+  <section class="hero hero--split">
     <div class="container">
-      <h1 class="hero__title">Semantic STEM animations for educators and authors</h1>
-      <p class="hero__lead">{SITE.tagline}</p>
-      <div class="hero__actions">
-        <Button href={LINKS.editor}>Open editor</Button>
-        <Button href="/pricing" variant="secondary">View pricing</Button>
+      <div>
+        <p class="eyebrow">For educators & presenters</p>
+        <h1 class="hero__title">
+          Animated STEM lessons, <em>without the code</em>
+        </h1>
+        <p class="hero__lead">{SITE.tagline}</p>
+        <div class="hero__actions">
+          <Button href={LINKS.signup} class="btn--lg">Get started free</Button>
+          <Button href={LINKS.editor} variant="secondary" class="btn--lg">Open editor</Button>
+        </div>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <strong>12+</strong>
+            <span>STEM subject areas</span>
+          </div>
+          <div class="hero__stat">
+            <strong>MP4 & PPTX</strong>
+            <span>Export in browser</span>
+          </div>
+          <div class="hero__stat">
+            <strong>Free tier</strong>
+            <span>No credit card</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--alt">
-    <div class="container">
-      <h2 class="section__title">Two paths, one platform</h2>
-      <p class="section__lead">STEMSketch separates content authoring from classroom composition — experts publish packs; teachers build ViewDecks.</p>
-      <div class="grid-2">
-        <article class="card">
-          <h3>Teach &amp; present</h3>
-          <p>
-            Drag official catalog templates onto slides, tune parameters with forms, preview animations, and export MP4 or PowerPoint — no code required.
-          </p>
-          <p style="margin-top: 1rem">
-            <Button href={LINKS.editor}>Open editor</Button>
-          </p>
-        </article>
-        <article class="card">
-          <h3>Author content</h3>
-          <p>
-            Domain experts publish Architecture F knowledge packs with ontology, ops, figures, views, and ScenarioSpec templates via VS Code and author-services.
-          </p>
-          <p style="margin-top: 1rem">
-            <Button href="/authors" variant="secondary">Author toolchain</Button>
-          </p>
-        </article>
-      </div>
+      <HeroVisual />
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2 class="section__title">Built for STEM classrooms</h2>
+    <div class="container text-center">
+      <p class="eyebrow">Why STEMSketch</p>
+      <h2 class="section__title">Everything you need to teach with motion</h2>
+      <p class="section__lead">Official templates, a slide-based editor, and one-click export — built for classrooms and conference talks.</p>
       <div class="grid-4">
         {
           FEATURES.map((f) => (
             <article class="card">
+              <div class="card__icon">{f.icon}</div>
               <h3>{f.title}</h3>
               <p>{f.description}</p>
             </article>
@@ -62,7 +59,8 @@ import { LINKS, SITE } from '../config/site.ts';
 
   <section class="section section--alt">
     <div class="container">
-      <h2 class="section__title">How it works</h2>
+      <p class="eyebrow">Workflow</p>
+      <h2 class="section__title">Three steps to a finished lesson</h2>
       <div class="grid-3">
         {
           HOW_IT_WORKS.map((step) => (
@@ -78,12 +76,13 @@ import { LINKS, SITE } from '../config/site.ts';
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2 class="section__title">STEM domain coverage</h2>
-      <p class="section__lead">Official packs span taxonomy areas from natural sciences to applied fields — with more domains added over time.</p>
+    <div class="container text-center">
+      <p class="eyebrow">Catalog</p>
+      <h2 class="section__title">Cover the subjects you teach</h2>
+      <p class="section__lead">Browse official packs in the editor — from pendulums and DNA to engineering diagrams.</p>
       <div class="grid-3">
         {
-          TAXONOMY_AREAS.map((area) => (
+          SUBJECT_AREAS.map((area) => (
             <article class="card">
               <h3>{area.label}</h3>
               <p>{area.description}</p>
@@ -94,14 +93,11 @@ import { LINKS, SITE } from '../config/site.ts';
     </div>
   </section>
 
-  <section class="section section--alt">
-    <div class="container" style="text-align: center">
-      <h2 class="section__title">Ready to compose your first ViewDeck?</h2>
-      <p class="section__lead" style="margin-inline: auto">Start free with official packs, or explore plans for cloud storage and collaboration.</p>
-      <div class="hero__actions">
-        <Button href={LINKS.signup}>Sign up free</Button>
-        <Button href="/pricing" variant="ghost">Compare plans</Button>
-      </div>
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready for your first ViewDeck?</h2>
+      <p>Sign up free, drag a template, and export your first animated lesson today.</p>
+      <Button href={LINKS.signup} class="btn--lg">Create free account</Button>
     </div>
   </section>
 </BaseLayout>

@@ -1,92 +1,56 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/Button.astro';
-import { LINKS } from '../config/site.ts';
+import StandaloneLayout from '../layouts/StandaloneLayout.astro';
 ---
 
-<BaseLayout
-  title="Authors"
-  description="Author Architecture F knowledge packs with the STEMSketch VS Code extension, author-services, and author-studio."
->
-  <section class="hero">
-    <div class="container">
-      <h1 class="hero__title">Author STEM knowledge packs</h1>
-      <p class="hero__lead">
-        Architecture F unifies ontology, ops, semantic figures, views, layouts, and ScenarioSpec catalog templates in one signed pack — the handoff contract to the end-user editor.
+<StandaloneLayout title="Authors" description="Internal author documentation — not linked from the public STEMSketch site.">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">Author STEM knowledge packs</h1>
+      <p class="section__lead">
+        Architecture F unifies ontology, ops, semantic figures, views, layouts, and catalog templates in one signed pack — the handoff contract to the end-user editor.
       </p>
-    </div>
-  </section>
 
-  <section class="section section--alt">
-    <div class="container">
-      <h2 class="section__title">Architecture F layers</h2>
+      <h2 class="section__title" style="font-size: 1.35rem; margin-top: 2.5rem">Architecture F layers</h2>
       <p class="section__lead">Authors work top-down through validated layers. End-users never see L1–L2 artifacts — they consume L3 templates as catalog entries.</p>
       <div class="grid-2">
-        <article class="card">
-          <h3>L1 — Reality</h3>
-          <p>Ontology, ops, golden tests, optional KerML/SysML model transpile to semantic graph definitions.</p>
-        </article>
-        <article class="card">
-          <h3>L2 — Projection</h3>
-          <p>Semantic figures, view bindings, and layouts project graph state into presentation scenes.</p>
-        </article>
-        <article class="card">
-          <h3>L3 — Scenarios</h3>
-          <p>Catalog templates with ScenarioSpec blocks — parameter metadata for end-user forms.</p>
-        </article>
-        <article class="card">
-          <h3>L4 — Composition</h3>
-          <p>ViewDecks, slides, and timing — end-user only. Authors validate scenarios with the same compiler the editor runs.</p>
-        </article>
+        <article class="card"><h3>L1 — Reality</h3><p>Ontology, ops, golden tests, optional KerML/SysML model transpile.</p></article>
+        <article class="card"><h3>L2 — Projection</h3><p>Semantic figures, view bindings, and layouts project graph state into presentation scenes.</p></article>
+        <article class="card"><h3>L3 — Scenarios</h3><p>Catalog templates with ScenarioSpec blocks — parameter metadata for end-user forms.</p></article>
+        <article class="card"><h3>L4 — Composition</h3><p>ViewDecks, slides, and timing — end-user only.</p></article>
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <h2 class="section__title">Author toolchain</h2>
-      <div class="grid-2">
-        <article class="card">
-          <h3>VS Code extension</h3>
-          <p>Validate packs, run golden tests, preview scenarios, scaffold platform packs, and sign bundles.</p>
-          <p style="margin-top: 1rem"><a href={LINKS.extension} rel="noopener noreferrer">Extension on GitHub</a></p>
-        </article>
-        <article class="card">
-          <h3>author-studio</h3>
-          <p>Preconfigured workspace for external authors — edition, API base, and starter pack out of the box.</p>
-          <p style="margin-top: 1rem"><a href={LINKS.authorStudio} rel="noopener noreferrer">author-studio repo</a></p>
-        </article>
-        <article class="card">
-          <h3>author-services</h3>
-          <p>HTTP API for validate, golden, preview, and bundle verify in enterprise edition (offline dev on port 4010).</p>
-          <p style="margin-top: 1rem"><a href={LINKS.authorServices} rel="noopener noreferrer">author-services repo</a></p>
-        </article>
-        <article class="card">
-          <h3>@stemsketch/author-runtime</h3>
-          <p>Compile facade in the platform monorepo — loaded dynamically by author-services at runtime.</p>
-          <p style="margin-top: 1rem"><a href={LINKS.architecture} rel="noopener noreferrer">Architecture doc</a></p>
-        </article>
-      </div>
+      <h2 class="section__title" style="font-size: 1.35rem; margin-top: 2.5rem">Author toolchain</h2>
+      <ul class="doc-list" style="margin-top: 1rem">
+        <li><a href="https://github.com/stemsketch/app/tree/main/extensions/stemsketch-knowledge" rel="noopener noreferrer">VS Code extension</a><span>Validate, golden tests, preview, sign bundles</span></li>
+        <li><a href="https://github.com/stemsketch/author-studio" rel="noopener noreferrer">author-studio</a><span>Preconfigured author workspace</span></li>
+        <li><a href="https://github.com/stemsketch/author-services" rel="noopener noreferrer">author-services</a><span>HTTP API for enterprise edition</span></li>
+        <li><a href="https://github.com/stemsketch/app/blob/main/docs/architecture.md" rel="noopener noreferrer">Architecture doc</a><span>Platform monorepo reference</span></li>
+      </ul>
     </div>
   </section>
-
-  <section class="section section--alt">
-    <div class="container" style="text-align: center">
-      <h2 class="section__title">Become a contributor</h2>
-      <p class="section__lead" style="margin-inline: auto">Platform packs live in the monorepo under <code>knowledge/packs/</code>. Signed forks use the same envelope under <code>contributions/</code>.</p>
-      <div class="hero__actions">
-        <Button href={LINKS.contributing} external>Contributing guide</Button>
-        <Button href={LINKS.authorBoundary} variant="secondary" external>Author / end-user boundary</Button>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+</StandaloneLayout>
 
 <style>
-  code {
-    font-size: 0.9em;
-    background: var(--ss-bg-subtle);
-    padding: 0.1em 0.35em;
-    border-radius: 4px;
+  .doc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .doc-list li {
+    margin-bottom: 1rem;
+  }
+
+  .doc-list a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .doc-list span {
+    display: block;
+    color: var(--ss-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-top: 0.2rem;
   }
 </style>

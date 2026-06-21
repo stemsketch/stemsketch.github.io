@@ -1,8 +1,7 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE } from '../config/site.ts';
 import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import { SITE } from '../config/site.ts';
 
 interface Props {
   title?: string;
@@ -12,7 +11,6 @@ interface Props {
 const { title, description } = Astro.props;
 const pageTitle = title ? `${title} · ${SITE.name}` : SITE.name;
 const pageDescription = description ?? SITE.description;
-const canonical = new URL(Astro.url.pathname, SITE.url).href;
 ---
 
 <!doctype html>
@@ -20,13 +18,9 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content={pageDescription} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,17 +29,24 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
     />
     <title>{pageTitle}</title>
   </head>
-  <body class="site-body">
-    <Header />
+  <body class="site-body site-body--standalone">
+    <header class="standalone-header">
+      <a href="/" class="standalone-header__brand">
+        <Logo size={24} />
+        <span>{SITE.name}</span>
+      </a>
+    </header>
     <main>
       <slot />
     </main>
-    <Footer />
+    <footer class="standalone-footer">
+      <a href="/">← Back to STEMSketch</a>
+    </footer>
   </body>
 </html>
 
-<style is:global>
-  .site-body {
+<style>
+  .site-body--standalone {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -53,5 +54,28 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
 
   main {
     flex: 1;
+  }
+
+  .standalone-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--ss-border);
+    background: var(--ss-bg-panel);
+  }
+
+  .standalone-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ss-text-primary);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .standalone-footer {
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--ss-border);
+    font-size: 0.9rem;
   }
 </style>

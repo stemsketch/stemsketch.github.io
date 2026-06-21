@@ -6,7 +6,7 @@ interface Props {
   external?: boolean;
 }
 
-const { href, variant = 'primary', class: className, external = false } = Astro.props;
+const { href, variant = 'primary', class: className = '', external = false } = Astro.props;
 const rel = external ? 'noopener noreferrer' : undefined;
 const target = external ? '_blank' : undefined;
 ---

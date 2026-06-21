@@ -1,66 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Faq from '../components/Faq.astro';
+import Button from '../components/Button.astro';
+import { GUIDES } from '../data/content.ts';
 import { LINKS } from '../config/site.ts';
-
-const docs = [
-  {
-    title: 'Architecture (Architecture F)',
-    href: LINKS.architecture,
-    description: 'Canonical platform architecture — layers, compile paths, personas, and repo layout.',
-  },
-  {
-    title: 'Author / end-user boundary',
-    href: LINKS.authorBoundary,
-    description: 'Persona split, ScenarioSpec contract, and tooling map.',
-  },
-  {
-    title: 'Contributing',
-    href: LINKS.contributing,
-    description: 'Shell repo model, pack validation, and signed bundle workflow.',
-  },
-  {
-    title: 'VS Code extension README',
-    href: LINKS.extension,
-    description: 'Extension features, enterprise vs platform edition, and settings.',
-  },
-  {
-    title: 'Platform monorepo (app)',
-    href: LINKS.appRepo,
-    description: 'Editor, render-server, knowledge packs, and packages.',
-  },
-  {
-    title: 'author-studio',
-    href: LINKS.authorStudio,
-    description: 'Preconfigured author workspace template.',
-  },
-  {
-    title: 'author-services',
-    href: LINKS.authorServices,
-    description: 'Author HTTP API for enterprise edition.',
-  },
-];
 ---
 
-<BaseLayout title="Docs" description="Documentation hub for STEMSketch — architecture, authoring, and platform repos.">
-  <section class="hero">
+<BaseLayout
+  title="Help"
+  description="How to use STEMSketch — getting started guides, export tips, and frequently asked questions."
+>
+  <section class="hero hero--center">
     <div class="container">
-      <h1 class="hero__title">Documentation</h1>
-      <p class="hero__lead">Curated links to architecture and authoring docs in the STEMSketch GitHub organization.</p>
+      <p class="eyebrow">Help center</p>
+      <h1 class="hero__title">How to use STEMSketch</h1>
+      <p class="hero__lead">
+        Step-by-step guides for building lessons, exporting video, and saving to the cloud. New here? Start with Getting started below.
+      </p>
+      <div class="hero__actions">
+        <Button href={LINKS.editor} class="btn--lg">Open editor</Button>
+        <Button href="#faq" variant="secondary" class="btn--lg">Jump to FAQ</Button>
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--alt">
+    <div class="container container--narrow">
+      <nav class="guide-nav" aria-label="Guide sections">
+        {GUIDES.map((g) => <a href={`#${g.id}`}>{g.title}</a>)}
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      {
+        GUIDES.map((guide) => (
+          <article class="guide-block" id={guide.id}>
+            <h3>{guide.title}</h3>
+            <ol>
+              {guide.steps.map((step) => (
+                <li>{step}</li>
+              ))}
+            </ol>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <Faq />
+
+  <section class="cta-band">
     <div class="container">
-      <ul class="doc-list">
-        {
-          docs.map((doc) => (
-            <li>
-              <a href={doc.href} rel="noopener noreferrer">{doc.title}</a>
-              <span>{doc.description}</span>
-            </li>
-          ))
-        }
-      </ul>
+      <h2>Still stuck?</h2>
+      <p>Reach out and we will help you get your first lesson exported.</p>
+      <Button href={LINKS.contact} class="btn--lg">Contact support</Button>
     </div>
   </section>
 </BaseLayout>
