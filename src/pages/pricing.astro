@@ -7,26 +7,33 @@ import { PLANS } from '../data/content.ts';
 
 <BaseLayout
   title="Pricing"
-  description="STEMSketch plans for educators — Free, Pro, Team, and Enterprise. Compare storage, collaboration, and export options."
+  description="STEMSketch plans for educators and teams — Free, Starter, Team, and Enterprise. Compare watermark, video length, AI processing, included token allowances, on-demand token add-ons, BYOK, storage, and SSO options."
 >
   <section class="hero hero--center">
     <div class="container">
       <p class="eyebrow">Pricing</p>
-      <h1 class="hero__title">Plans for every classroom</h1>
+      <h1 class="hero__title">Plans for every way you create</h1>
       <p class="hero__lead">
-        Start free with local `.viewdeck` saves. Upgrade to Pro for cloud storage, or Team for realtime collaboration.
+        Every STEMSketch user signs in with SSO. Start free, remove watermarks with Starter, or sync ViewDecks server-side with Team.
       </p>
     </div>
   </section>
 
   <section class="section" style="padding-top: 0">
     <div class="container">
-      <div class="grid-4">
+      <div class="pricing-summary" aria-label="Plan highlights">
+        <span>SSO required for all users</span>
+        <span>Starter includes base AI tokens</span>
+        <span>Team includes 10x Starter tokens</span>
+        <span>$10 token packs are optional add-ons</span>
+        <span>BYOK on paid plans</span>
+      </div>
+      <div class="grid-4 pricing-grid">
         {PLANS.map((plan) => <PricingCard plan={plan} />)}
       </div>
       <PlanTable />
       <p class="footnote">
-        Paid plans are available in the editor when billing is enabled. Enterprise includes SSO and SCIM — <a href="mailto:hello@stemsketch.dev">contact us</a> for a quote.
+        AI token packs are optional pay-as-you-go add-ons for users who run out before their next subscription renewal. Enterprise adds API access, SCIM, and company SSO — <a href="mailto:hello@stemsketch.dev">contact us</a> for a quote.
       </p>
     </div>
   </section>

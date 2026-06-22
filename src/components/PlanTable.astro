@@ -4,6 +4,10 @@ import { PLANS, COMPARISON_ROWS } from '../data/content.ts';
 
 <div class="plan-table-wrap">
   <table class="plan-table">
+    <colgroup>
+      <col class="plan-table__feature-col" />
+      {PLANS.map(() => <col class="plan-table__plan-col" />)}
+    </colgroup>
     <thead>
       <tr>
         <th scope="col">Feature</th>

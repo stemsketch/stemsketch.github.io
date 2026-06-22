@@ -11,10 +11,14 @@ const { plan } = Astro.props;
 
 <article class={`card pricing-card ${plan.highlighted ? 'pricing-card--highlight' : ''}`}>
   {plan.highlighted && <span class="pricing-card__badge">Popular</span>}
-  <h3 class="pricing-card__price">{plan.price}</h3>
-  {plan.priceNote && <p class="pricing-card__note">{plan.priceNote}</p>}
-  <h4>{plan.name}</h4>
-  <p class="pricing-card__desc">{plan.description}</p>
+  <div class="pricing-card__head">
+    <h3>{plan.name}</h3>
+    <p class="pricing-card__desc">{plan.description}</p>
+  </div>
+  <div class="pricing-card__price-row">
+    <span class="pricing-card__price">{plan.price}</span>
+    {plan.priceNote && <span class="pricing-card__note">{plan.priceNote}</span>}
+  </div>
   <ul class="pricing-card__features">
     {plan.features.map((feature) => (
       <li>{feature}</li>
@@ -26,13 +30,28 @@ const { plan } = Astro.props;
 </article>
 
 <style>
-  .pricing-card h4 {
-    margin: 0 0 0.5rem;
-    font-size: 1.1rem;
+  .pricing-card__head {
+    min-height: 7.5rem;
+  }
+
+  .pricing-card h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.15rem;
+    letter-spacing: 0;
+  }
+
+  .pricing-card__price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-height: 3.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--ss-border);
   }
 
   .pricing-card__features {
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.5rem;
     padding: 0;
     list-style: none;
     font-size: 0.9rem;
@@ -40,15 +59,19 @@ const { plan } = Astro.props;
   }
 
   .pricing-card__features li {
-    padding: 0.35rem 0 0.35rem 1.25rem;
+    padding: 0.4rem 0 0.4rem 1.65rem;
     position: relative;
   }
 
   .pricing-card__features li::before {
-    content: '✓';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--ss-accent);
-    font-weight: 600;
+    top: 0.62rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    background: var(--ss-accent-muted);
+    box-shadow: inset 0 0 0 4px #fff;
   }
 </style>

@@ -12,7 +12,7 @@ export const FEATURES = [
   {
     icon: '⚡',
     title: 'Instant MP4 export',
-    description: 'Render video right in your browser with Chrome or Edge — up to 60 seconds at 1080p.',
+    description: 'Render video right in your browser with Chrome or Edge. Free exports are capped at 60 seconds.',
   },
   {
     icon: '🎛️',
@@ -35,7 +35,7 @@ export const HOW_IT_WORKS = [
   {
     step: '3',
     title: 'Export & share',
-    description: 'Download MP4, PowerPoint, or a `.viewdeck` file — or save to the cloud on Pro and Team plans.',
+    description: 'Download MP4, PowerPoint, or a `.viewdeck` file. Team workspaces can save ViewDecks server-side for concurrent editing.',
   },
 ];
 
@@ -73,8 +73,8 @@ export const GUIDES = [
     title: 'Exporting video (MP4)',
     steps: [
       'Use Export MP4 in the toolbar when your deck is ready.',
-      'Export runs in your browser (Chrome or Edge recommended). Maximum length is 60 seconds at 1080p.',
-      'Free plan exports include a non-intrusive "Created By STEMSketch" watermark; Pro and above export without watermark.',
+      'Export runs in your browser (Chrome or Edge recommended). Free plan videos are limited to 60 seconds.',
+      'Free plan exports include a non-intrusive "Created By STEMSketch" watermark; Starter, Team, and Enterprise export without watermark.',
     ],
   },
   {
@@ -87,12 +87,12 @@ export const GUIDES = [
     ],
   },
   {
-    id: 'cloud',
-    title: 'Saving to the cloud (Pro & Team)',
+    id: 'sync',
+    title: 'Saving and syncing ViewDecks',
     steps: [
-      'Sign in and choose Save with a project name.',
-      'Pro plans include 2 GB of cloud storage; Team plans include 5 GB.',
-      'Publish when ready to share a view-only link with students or colleagues.',
+      'All users sign in with SSO before using STEMSketch.',
+      'Free and Starter users can save portable `.viewdeck` files locally.',
+      'Team workspaces save ViewDecks server-side, include 5 GB storage per user, and support concurrent editing.',
     ],
   },
   {
@@ -100,8 +100,8 @@ export const GUIDES = [
     title: 'Sharing a ViewDeck',
     steps: [
       'Export a `.viewdeck` file for offline backup or import on another account.',
-      'Use cloud publish (Pro or Team) to generate a share link for view-only playback.',
-      'Recipients do not need to edit — they watch the composed lesson.',
+      'Use a Team workspace when colleagues need to edit the same server-side ViewDeck together.',
+      'Enterprise plans can add API access, SCIM, and company SSO for institution-wide workflows.',
     ],
   },
 ];
@@ -113,7 +113,7 @@ export const FAQ = [
   },
   {
     q: 'Can I use STEMSketch for free?',
-    a: 'Yes. The Free plan includes official pack templates, local `.viewdeck` saves, and exports with a "Created By STEMSketch" watermark. See Pricing for cloud storage and watermark-free export.',
+    a: 'Yes. All users sign in with SSO. The Free plan includes official pack templates, local `.viewdeck` saves, shared AI processing that may be slower during busy periods, and MP4 exports with a "Created By STEMSketch" watermark up to 60 seconds.',
   },
   {
     q: 'Do I need to know programming?',
@@ -121,7 +121,7 @@ export const FAQ = [
   },
   {
     q: 'What is a ViewDeck?',
-    a: 'A ViewDeck is your multi-slide project — templates, timing, transitions, and layout. You can save it locally, to the cloud, or export as a portable `.viewdeck` file.',
+    a: 'A ViewDeck is your multi-slide project — templates, timing, transitions, and layout. You can save it locally as a portable `.viewdeck` file, or save it server-side on Team plans for concurrent editing.',
   },
   {
     q: 'Why does video export only work in Chrome or Edge?',
@@ -129,15 +129,19 @@ export const FAQ = [
   },
   {
     q: 'What is the 60-second export limit?',
-    a: 'Browser-based encoding is capped at 60 seconds and 1080p to keep exports fast and reliable on classroom laptops.',
+    a: 'Free plan videos are capped at 60 seconds. Starter, Team, and Enterprise plans remove the video length limit.',
   },
   {
     q: 'Can I collaborate with colleagues?',
-    a: 'Team plans include realtime collaboration on cloud ViewDecks. Pro plans include 2 GB cloud storage without collaboration.',
+    a: 'Yes. Team plans save ViewDecks server-side and allow concurrent editing, with 5 GB storage per user.',
   },
   {
     q: 'How do I remove the watermark?',
-    a: 'Upgrade to Pro or Team. Free plan MP4 exports include a non-intrusive "Created By STEMSketch" watermark.',
+    a: 'Upgrade to Starter, Team, or Enterprise. Free plan MP4 exports include a non-intrusive "Created By STEMSketch" watermark.',
+  },
+  {
+    q: 'How do AI tokens and BYOK work?',
+    a: 'Starter includes a base token allowance and Team includes 10x the Starter allowance. If a user runs out before the next subscription renewal, they can buy optional $10 AI token packs as pay-as-you-go add-ons. BYOK is available on paid plans.',
   },
   {
     q: 'Can I import PowerPoint back into STEMSketch?',
@@ -150,14 +154,20 @@ export const FAQ = [
 ];
 
 /** Pricing plan data — mirrors platform PLAN_QUOTAS */
-export type PlanId = 'free' | 'pro' | 'team' | 'enterprise';
+export type PlanId = 'free' | 'starter' | 'team' | 'enterprise';
 
 export interface PlanComparison {
+  access: string;
+  videoLimit: string;
   serverStorage: string;
   localViewdeck: boolean;
   watermark: string;
+  aiProcessing: string;
+  aiTokens: string;
+  aiTokenAddOns: string;
+  byok: string;
   realtimeCollab: boolean;
-  ssoScim: boolean;
+  enterpriseControls: string;
 }
 
 export interface Plan {
@@ -179,84 +189,118 @@ export const PLANS: Plan[] = [
     name: 'Free',
     price: '$0',
     priceNote: 'forever',
-    description: 'Build lessons locally with official STEM templates.',
+    description: 'Start creating with SSO access, local ViewDeck files, and shared AI processing.',
     features: [
+      'SSO sign-in required',
+      'Videos include watermark',
+      '60-second video limit',
+      'Shared AI processing',
       'Local `.viewdeck` saves',
-      'No server-side storage',
-      '"Created By STEMSketch" on rendered videos',
     ],
     cta: 'Start free',
     ctaHref: 'https://anime.os20.org/signup',
     comparison: {
-      serverStorage: '—',
+      access: 'SSO required',
+      videoLimit: '60 seconds',
+      serverStorage: 'None',
       localViewdeck: true,
-      watermark: 'Created By STEMSketch',
+      watermark: 'Yes',
+      aiProcessing: 'Shared; may be slower when busy',
+      aiTokens: 'No included monthly allowance',
+      aiTokenAddOns: '$10 packs available on demand',
+      byok: 'No',
       realtimeCollab: false,
-      ssoScim: false,
+      enterpriseControls: '—',
     },
   },
   {
-    id: 'pro',
-    name: 'Pro',
+    id: 'starter',
+    name: 'Starter',
     price: '$5',
     priceNote: 'per year',
-    description: 'Cloud storage and watermark-free exports for individual educators.',
+    description: 'Watermark-free generation with included AI tokens and a dedicated processing slot.',
     features: [
-      '2 GB server-side storage',
-      'Watermark-free MP4 export',
-      'Cloud sync across devices',
+      'SSO sign-in required',
+      'No video watermark',
+      'No video length limit',
+      'Base AI token allowance',
+      'Dedicated AI processing',
+      'BYOK supported',
     ],
-    cta: 'Upgrade to Pro',
+    cta: 'Upgrade to Starter',
     ctaHref: 'https://anime.os20.org/signup',
     comparison: {
-      serverStorage: '2 GB',
+      access: 'SSO required',
+      videoLimit: 'Unlimited',
+      serverStorage: 'None',
       localViewdeck: true,
-      watermark: '—',
+      watermark: 'No',
+      aiProcessing: 'Dedicated slot',
+      aiTokens: 'Base allowance included',
+      aiTokenAddOns: '$10 packs if allowance runs out',
+      byok: 'Yes',
       realtimeCollab: false,
-      ssoScim: false,
+      enterpriseControls: '—',
     },
   },
   {
     id: 'team',
     name: 'Team',
     price: '$5',
-    priceNote: 'per month · or $50 per year',
-    description: 'Collaborate in realtime with more cloud storage for your group.',
+    priceNote: 'per month · $50 per year',
+    description: 'Server-side ViewDeck sync and concurrent editing for working groups.',
     features: [
-      '5 GB server-side storage',
-      'Realtime collaboration',
-      'Watermark-free MP4 export',
+      'SSO sign-in required',
+      'Server-side ViewDeck saves',
+      'Concurrent editing',
+      '5 GB storage per user',
+      '10x Starter AI tokens',
+      'Dedicated AI processing per user',
+      'BYOK supported',
     ],
     cta: 'Upgrade to Team',
     ctaHref: 'https://anime.os20.org/signup',
     highlighted: true,
     comparison: {
-      serverStorage: '5 GB',
+      access: 'SSO required',
+      videoLimit: 'Unlimited',
+      serverStorage: '5 GB per user',
       localViewdeck: true,
-      watermark: '—',
+      watermark: 'No',
+      aiProcessing: 'Dedicated slot per user',
+      aiTokens: '10x Starter allowance',
+      aiTokenAddOns: '$10 packs if allowance runs out',
+      byok: 'Yes',
       realtimeCollab: true,
-      ssoScim: false,
+      enterpriseControls: '—',
     },
   },
   {
     id: 'enterprise',
     name: 'Enterprise',
     price: 'Custom',
-    priceNote: 'contact us',
-    description: 'SSO, SCIM, and custom terms for institutions.',
+    priceNote: 'quote',
+    description: 'Institution controls, provisioning, and API access tailored to your organization.',
     features: [
-      'Single sign-on (SSO)',
+      'Company SSO',
       'SCIM provisioning',
-      'Custom storage & support',
+      'API access',
+      'Custom quote and terms',
     ],
     cta: 'Contact us',
     ctaHref: 'mailto:hello@stemsketch.dev',
     comparison: {
+      access: 'Company SSO',
+      videoLimit: 'Unlimited',
       serverStorage: 'Custom',
       localViewdeck: true,
-      watermark: '—',
+      watermark: 'No',
+      aiProcessing: 'Custom dedicated capacity',
+      aiTokens: 'Custom',
+      aiTokenAddOns: 'Custom',
+      byok: 'Yes',
       realtimeCollab: true,
-      ssoScim: true,
+      enterpriseControls: 'API, SCIM, company SSO',
     },
   },
 ];
@@ -266,9 +310,15 @@ export const COMPARISON_ROWS: {
   key: keyof PlanComparison;
   format?: (v: boolean | string) => string;
 }[] = [
+  { label: 'Access', key: 'access' },
+  { label: 'Video length', key: 'videoLimit' },
+  { label: 'Video watermark', key: 'watermark' },
+  { label: 'AI processing', key: 'aiProcessing' },
+  { label: 'Included AI tokens', key: 'aiTokens' },
+  { label: 'On-demand AI token add-ons', key: 'aiTokenAddOns' },
+  { label: 'BYOK', key: 'byok' },
   { label: 'Server-side storage', key: 'serverStorage' },
   { label: 'Local `.viewdeck` saves', key: 'localViewdeck', format: (v) => (v ? 'Yes' : '—') },
-  { label: 'Video watermark', key: 'watermark' },
-  { label: 'Realtime collaboration', key: 'realtimeCollab', format: (v) => (v ? 'Yes' : '—') },
-  { label: 'SSO / SCIM', key: 'ssoScim', format: (v) => (v ? 'Yes' : '—') },
+  { label: 'Concurrent editing', key: 'realtimeCollab', format: (v) => (v ? 'Yes' : '—') },
+  { label: 'Enterprise controls', key: 'enterpriseControls' },
 ];
