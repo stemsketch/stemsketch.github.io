@@ -1,0 +1,16 @@
+{
+  "lesson": {
+    "id": "lesson.projectile-motion",
+    "title": "Projectile motion",
+    "summary": "A ViewDeck lesson composed from seven versioned packs."
+  },
+  "packs": [
+    { "id": "pack.physics-knowledge", "title": "Introductory physics knowledge" },
+    { "id": "pack.vector-artifacts", "title": "Projectile semantic artifacts" },
+    { "id": "pack.plot", "title": "Trajectory plot" },
+    { "id": "pack.free-body-diagram", "title": "Free-body diagram" },
+    { "id": "pack.animation-2d", "title": "2D animation deck" },
+    { "id": "pack.demo-3d", "title": "3D demonstration" },
+    { "id": "pack.viewdeck-projectile", "title": "Projectile ViewDeck" }
+  ]
+}

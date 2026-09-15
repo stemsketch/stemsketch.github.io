@@ -1,0 +1,20 @@
+{
+  "channel": "0.1.0-dev",
+  "notes": [
+    {
+      "id": "phase-19",
+      "title": "Static website",
+      "summary": "GitHub Pages publishes architecture, IR docs, gallery snapshots, and generated package/IR references without calling Author Services."
+    },
+    {
+      "id": "phase-18",
+      "title": "Publishing workflow",
+      "summary": "Packs are sealed with content hashes. Publication authority stays on Author Services."
+    },
+    {
+      "id": "phase-10",
+      "title": "Browser 2D runtime",
+      "summary": "The viewer plays a static deck.json using @stemsketch/runtime."
+    }
+  ]
+}

@@ -1,11 +1,6 @@
-import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
-import { foundationReady, repositoryId } from "../src/index.js";
-
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+import { foundationReady, generateSite, repositoryId } from "../src/index.js";
 
 describe("phase 0 foundation", () => {
   it("identifies the repository", () => {
@@ -17,7 +12,7 @@ describe("phase 0 foundation", () => {
   });
 
   it("ships a static homepage that does not require author-services", () => {
-    const html = readFileSync(join(root, "index.html"), "utf8");
+    const html = generateSite().get("index.html") ?? "";
     expect(html).toContain("STEMSketch");
     expect(html).not.toMatch(/author-services\/api/i);
   });

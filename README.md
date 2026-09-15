@@ -2,13 +2,13 @@
 
 Static public website for STEMSketch, deployed with GitHub Pages.
 
-This site hosts project documentation, architecture overview, examples, galleries, and generated references. It must not require the authoring backend merely to display static documentation.
+This site hosts project documentation, architecture overview, IR docs, examples, a pack gallery, tutorials, generated package/IR references, and release notes. It must not require the authoring backend merely to display static documentation. Authenticated authoring stays in Author Studio.
 
 See [ADR-0001](https://github.com/stemsketch/stemsketch/blob/main/docs/adr/0001-stemsketch-greenfield-architecture.md).
 
 ## Status
 
-Phase 0 foundation: a static stub plus CI. Full docs/gallery publishing is Phase 19.
+Phase 19: static docs, gallery snapshot, generated `reference.json`, link and accessibility checks, and a GitHub Pages deploy workflow.
 
 ## Local development
 
@@ -23,4 +23,4 @@ pnpm test
 pnpm build
 ```
 
-`pnpm build` typechecks the smoke package and copies `index.html` to `dist/`.
+`pnpm build` emits TypeScript to `lib/` and writes the GitHub Pages tree to `dist/`.

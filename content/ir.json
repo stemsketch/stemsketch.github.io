@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "0.1.0",
+  "kinds": [
+    {
+      "id": "stemsketch.knowledge",
+      "role": "canonical",
+      "summary": "Concepts, quantities, equations, units, and relations."
+    },
+    {
+      "id": "stemsketch.artifact",
+      "role": "canonical",
+      "summary": "Semantic artifacts that reference knowledge without choosing a renderer."
+    },
+    {
+      "id": "stemsketch.layout",
+      "role": "canonical",
+      "summary": "Renderer-neutral boxes, anchors, and grouping."
+    },
+    {
+      "id": "stemsketch.scene",
+      "role": "canonical",
+      "summary": "Objects, cameras, and lights independent of SVG or Blender."
+    },
+    {
+      "id": "stemsketch.view",
+      "role": "canonical",
+      "summary": "A presented slice of artifacts and layers."
+    },
+    {
+      "id": "stemsketch.viewdeck",
+      "role": "canonical",
+      "summary": "Ordered views for a lesson or demonstration."
+    },
+    {
+      "id": "stemsketch.transition",
+      "role": "canonical",
+      "summary": "Appear, fade, transform, morph, split, and merge declarations."
+    },
+    {
+      "id": "stemsketch.svg",
+      "role": "target",
+      "summary": "Compiler target. Not a source of authored truth."
+    },
+    {
+      "id": "stemsketch.canvas2d",
+      "role": "target",
+      "summary": "Browser 2D playback target."
+    },
+    {
+      "id": "stemsketch.krita",
+      "role": "target",
+      "summary": "Layered export target. Optional in CI."
+    },
+    {
+      "id": "stemsketch.blender",
+      "role": "target",
+      "summary": "3D/script export target. Isolated execution only."
+    }
+  ]
+}

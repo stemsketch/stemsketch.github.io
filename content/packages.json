@@ -1,0 +1,46 @@
+{
+  "generatedFrom": "phase-19-static-snapshot",
+  "packages": [
+    {
+      "name": "@stemsketch/graph",
+      "repo": "stemsketch-ir",
+      "summary": "Shared node, edge, and graph kernel."
+    },
+    {
+      "name": "@stemsketch/schema",
+      "repo": "stemsketch-ir",
+      "summary": "Versioning, diagnostics, canonical JSON."
+    },
+    {
+      "name": "@stemsketch/knowledge-ir",
+      "repo": "stemsketch-ir",
+      "summary": "Knowledge IR types and validators."
+    },
+    {
+      "name": "@stemsketch/artifact-ir",
+      "repo": "stemsketch-ir",
+      "summary": "Semantic artifact IR."
+    },
+    {
+      "name": "@stemsketch/compiler-core",
+      "repo": "stemsketch-compiler",
+      "summary": "Deterministic pass runtime."
+    },
+    {
+      "name": "@stemsketch/compiler-viewdeck",
+      "repo": "stemsketch-compiler",
+      "summary": "ViewDeck lowering."
+    },
+    { "name": "@stemsketch/runtime", "repo": "stemsketch", "summary": "Browser 2D playback." },
+    {
+      "name": "@stemsketch/catalog",
+      "repo": "stemsketch",
+      "summary": "Consume sealed packs into a workspace."
+    },
+    {
+      "name": "@stemsketch/author-services",
+      "repo": "author-services",
+      "summary": "HTTP /api/v1. Not required to read this site."
+    }
+  ]
+}

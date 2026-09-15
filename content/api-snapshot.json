@@ -1,0 +1,13 @@
+{
+  "note": "Static snapshot of Author Services routes. This site does not fetch them.",
+  "basePath": "/api/v1",
+  "operations": [
+    { "method": "GET", "path": "/api/v1/health" },
+    { "method": "GET", "path": "/api/v1/openapi.json" },
+    { "method": "POST", "path": "/api/v1/validate" },
+    { "method": "POST", "path": "/api/v1/compile" },
+    { "method": "POST", "path": "/api/v1/publish" },
+    { "method": "GET", "path": "/api/v1/packs/{id}/{version}" },
+    { "method": "POST", "path": "/api/v1/ai/workflows" }
+  ]
+}
