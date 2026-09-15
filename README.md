@@ -12,7 +12,7 @@ Phase 0 foundation: a static stub plus CI. Full docs/gallery publishing is Phase
 
 ## Local development
 
-Requires Node.js 22+ and [pnpm](https://pnpm.io/) 11.
+Requires Node.js 24.21+ and [pnpm](https://pnpm.io/) 11.
 
 ```bash
 pnpm install
