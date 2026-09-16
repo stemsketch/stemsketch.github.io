@@ -12,6 +12,16 @@
       "summary": "Versioning, diagnostics, canonical JSON."
     },
     {
+      "name": "@stemsketch/semantic-identity",
+      "repo": "stemsketch-ir",
+      "summary": "Canonical concept registry and identity."
+    },
+    {
+      "name": "@stemsketch/physics-ir",
+      "repo": "stemsketch-ir",
+      "summary": "Renderer-independent Physics IR."
+    },
+    {
       "name": "@stemsketch/knowledge-ir",
       "repo": "stemsketch-ir",
       "summary": "Knowledge IR types and validators."
@@ -25,6 +35,11 @@
       "name": "@stemsketch/compiler-core",
       "repo": "stemsketch-compiler",
       "summary": "Deterministic pass runtime."
+    },
+    {
+      "name": "@stemsketch/compiler-physics",
+      "repo": "stemsketch-compiler",
+      "summary": "Physics DSL compiler."
     },
     {
       "name": "@stemsketch/compiler-viewdeck",

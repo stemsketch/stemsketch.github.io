@@ -7,6 +7,16 @@
       "summary": "Concepts, quantities, equations, units, and relations."
     },
     {
+      "id": "stemsketch.physics",
+      "role": "canonical",
+      "summary": "Renderer-independent mechanics: bodies, frames, forces, simulation intent."
+    },
+    {
+      "id": "stemsketch.simulation",
+      "role": "canonical",
+      "summary": "State trajectories produced from Physics IR. Not a renderer."
+    },
+    {
       "id": "stemsketch.artifact",
       "role": "canonical",
       "summary": "Semantic artifacts that reference knowledge without choosing a renderer."
